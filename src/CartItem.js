@@ -2,16 +2,15 @@ import React from 'react';
 import { resolve } from 'url';
 import { reject } from 'q';
 
-class  CartItem extends React.Component{
-    render()
-    {
-        console.log("this.props",this.props);
-        const {price,qty,title,id}=this.props.product;
+  const CartItem = (props) => {
+   
+        console.log("this.props",props);
+        const {price,qty,title,url}=props.product;
         return(
           <div className="cart-item">
 
             <div className="left-block">
-            <img  style={styles.image} />
+            <img  style={styles.image} src={url} />
 
             </div>
 
@@ -25,19 +24,19 @@ class  CartItem extends React.Component{
                             alt="increase"
                             className="action-icons"
                             src="https://image.flaticon.com/icons/svg/992/992651.svg"
-                            onClick={()=>this.props.increaseQuantity(this.props.product)}
+                            onClick={()=>props.increaseQuantity(props.product)}
                         />
                     <img
                             alt="decrease"
                             className="action-icons"
                             src="https://image.flaticon.com/icons/svg/659/659892.svg"
-                            onClick={()=>this.props.decreaseQuantity(this.props.product)}
+                            onClick={()=>props.decreaseQuantity(props.product)}
                         />
                     <img
                             alt="delete"
                             className="action-icons"
                             src="https://image.flaticon.com/icons/svg/1214/1214428.svg"
-                            onClick={()=>this.props.deleteQuantity(this.props.product.id)}
+                            onClick={()=>props.deleteQuantity(props.product.id)}
                                 
                         />
 
@@ -45,7 +44,7 @@ class  CartItem extends React.Component{
             </div>
           </div>
         );
-    }
+    
     //  increaseQuantity=()=>
     // {
     //     //this.state.qty+=1;   doesn't re render ,though the value do gets changed
@@ -106,9 +105,9 @@ class  CartItem extends React.Component{
 
 const styles={
 image:{
-    height: 100,
-  width: 100,
-  borderRadius:4,
+    height: 120,
+  width: 120,
+  borderRadius:6,
   backgroundColor:"Gray"
 }
 
